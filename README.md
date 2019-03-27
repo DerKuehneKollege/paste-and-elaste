@@ -37,6 +37,6 @@ https://doc.qt.io/qt-5/windows-deployment.html
 * https://doc.qt.io/qt-5/modelview.html
 * https://doc.qt.io/qt-5/qstringlistmodel.html
 * https://doc.qt.io/qt-5/sql-presenting.html
-
+* https://doc.qt.io/qt-5.11/qtsql-cachedtable-example.html
 
 * https://stackoverflow.com/questions/3492739/auto-expanding-layout-with-qt-designer
