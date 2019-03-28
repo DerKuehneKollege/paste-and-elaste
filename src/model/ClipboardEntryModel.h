@@ -8,6 +8,7 @@
 
 static const int NUM_COLUMNS = 2;
 
+#include <QDebug>
 #include <QAbstractTableModel>
 #include "ClipboardEntry.h"
 
@@ -15,28 +16,27 @@ class ClipboardEntryModel : public QAbstractTableModel {
     Q_OBJECT
 
 private:
-    QList<ClipboardEntry*> entries;
+    QList<ClipboardEntry*> mEntries{};
 
 public:
     explicit ClipboardEntryModel(QObject *parent = nullptr) : QAbstractTableModel(parent) {
     }
 
-    void addEntry(ClipboardEntry *pEntry) {
-        const int begin = entries.size() > 0 ? entries.size() - 1 : 0;
-        const int last = entries.size();
-        beginInsertRows(QModelIndex(), begin, last);
-        entries.push_back(pEntry);
+    void addEntry(ClipboardEntry *newEntry) {
+        const int lastPosition = mEntries.empty()
+                ? 0
+                : mEntries.size() - 1;
+
+        beginInsertRows(QModelIndex(), lastPosition, lastPosition);
+        mEntries.push_back(newEntry);
         endInsertRows();
-//        QModelIndex topLeft = createIndex(entries.size() - 1, 0);
-//        QModelIndex bottomRight = createIndex(entries.size(), 1);
-//        emit dataChanged(topLeft, bottomRight, {Qt::DisplayRole});
     }
 
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override {
-        return entries.length();
+    int rowCount(const QModelIndex &parent) const override {
+        return mEntries.length();
     }
 
-    int columnCount(const QModelIndex &parent = QModelIndex()) const override {
+    int columnCount(const QModelIndex &parent) const override {
         return NUM_COLUMNS;
     }
 
@@ -47,18 +47,20 @@ public:
                     return QString("Data");
                 case 1:
                     return QString("Timestamp");
+                default:
+                    qWarning() << "ClipboardEntryModel::headerData: Num columns exceeded [" << section << "]";
             }
         }
 
         return QVariant();
     }
 
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override {
+    QVariant data(const QModelIndex &index, int role) const override {
         if (role == Qt::DisplayRole) {
             if (index.column() == 0) {
-                return entries.at(index.row())->getData();
+                return mEntries.at(index.row())->getData();
             } else {
-                return entries.at(index.row())->getTimestamp();
+                return mEntries.at(index.row())->getTimestamp().toString("d.M.yyyy hh:mm:ss.z");
             }
         }
 

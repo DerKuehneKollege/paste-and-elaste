@@ -23,7 +23,7 @@ find_package(Qt5Sql REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 # Tell CMake to create the executable
-set(SOURCE_FILES src/main.cpp src/UiMainWindow.h src/MainWindow.h src/MainWindow.cpp src/ClipboardEntryModel.cpp src/ClipboardEntryModel.h src/ClipboardEntry.cpp src/ClipboardEntry.h)
+set(SOURCE_FILES src/main.cpp src/ui/main-window/UiMainWindow.h src/ui/main-window/MainWindow.h src/ui/main-window/MainWindow.cpp src/model/ClipboardEntryModel.cpp src/model/ClipboardEntryModel.h src/model/ClipboardEntry.cpp src/model/ClipboardEntry.h src/consts.h)
 add_executable(PasteAndElaste ${SOURCE_FILES})
 
 # Link the executable to the Qt 5 libraries

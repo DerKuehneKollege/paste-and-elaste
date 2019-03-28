@@ -11,33 +11,29 @@
 
 class ClipboardEntry : public QObject {
     Q_OBJECT
+
+private:
+    QVariant mData{};
+    QDateTime mTimestamp{};
+
 public:
     ClipboardEntry() = default;
 
-    ClipboardEntry(ClipboardEntry &source) {
-        this->data = source.data;
-        this->timestamp = source.timestamp;
-    }
-
     inline const QVariant &getData() const {
-        return data;
+        return mData;
     }
 
     inline void setData(const QVariant &data) {
-        ClipboardEntry::data = data;
+        mData = data;
     }
 
     inline const QDateTime &getTimestamp() const {
-        return timestamp;
+        return mTimestamp;
     }
 
     inline void setTimestamp(const QDateTime &timestamp) {
-        ClipboardEntry::timestamp = timestamp;
+        mTimestamp = timestamp;
     }
-
-private:
-    QVariant data;
-    QDateTime timestamp;
 };
 
 

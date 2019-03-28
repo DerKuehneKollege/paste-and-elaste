@@ -1,16 +1,17 @@
 #include <QApplication>
+#include <QGuiApplication>
 #include <QDebug>
 
-#include "MainWindow.h"
+#include "src/ui/main-window/MainWindow.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-//    auto *clipboard = new ClipboardAdapter;
+    auto clipboard = QGuiApplication::clipboard();
 
-    auto *window = new MainWindow;
+    auto window = new MainWindow(nullptr, clipboard);
     window->show();
 
     return QApplication::exec();

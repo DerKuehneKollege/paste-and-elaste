@@ -45,7 +45,7 @@ public:
 
     void setupUi(QMainWindow *MainWindow) {
         if (MainWindow->objectName().isEmpty())
-            MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
+            MainWindow->setObjectName(QString::fromUtf8("main-window"));
         MainWindow->resize(657, 578);
         actionBeenden = new QAction(MainWindow);
         actionBeenden->setObjectName(QString::fromUtf8("actionBeenden"));
@@ -99,18 +99,17 @@ public:
         menuHilfe->addAction(actionInfo);
 
         retranslateUi(MainWindow);
-        QObject::connect(actionBeenden, SIGNAL(triggered()), MainWindow, SLOT(close()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
     void retranslateUi(QMainWindow *MainWindow) {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PasteAndElaste", nullptr));
-        actionBeenden->setText(QApplication::translate("MainWindow", "Beenden", nullptr));
-        actionInfo->setText(QApplication::translate("MainWindow", "Info...", nullptr));
-        searchButton->setText(QApplication::translate("MainWindow", "Suchen", nullptr));
-        menuDatei->setTitle(QApplication::translate("MainWindow", "Datei", nullptr));
-        menuHilfe->setTitle(QApplication::translate("MainWindow", "Hilfe", nullptr));
+        MainWindow->setWindowTitle(QApplication::translate("main-window", "PasteAndElaste", nullptr));
+        actionBeenden->setText(QApplication::translate("main-window", "Beenden", nullptr));
+        actionInfo->setText(QApplication::translate("main-window", "Info...", nullptr));
+        searchButton->setText(QApplication::translate("main-window", "Suchen", nullptr));
+        menuDatei->setTitle(QApplication::translate("main-window", "Datei", nullptr));
+        menuHilfe->setTitle(QApplication::translate("main-window", "Hilfe", nullptr));
     } // retranslateUi
 
 };
