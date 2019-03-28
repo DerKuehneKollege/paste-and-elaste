@@ -16,8 +16,8 @@ private:
     Ui::MainWindow ui{};
     QClipboard* clipboard{QGuiApplication::clipboard()};
 //    QStringListModel* model{};
+//    QStringList stringList{};
     ClipboardEntryModel* clipboardEntryModel{};
-    QStringList stringList{};
 
 public:
     explicit MainWindow(QWidget *parent = nullptr) : QMainWindow(parent) {
@@ -55,7 +55,12 @@ private slots:
         qDebug() << "Clipboard-Text: [" << clipboard->text() << "]";
 //        stringList.append(clipboard->text());
 //        model->setStringList(stringList);
-        clipboardEntryModel->dataChanged
+
+        ClipboardEntry *newEntry = new ClipboardEntry;
+        newEntry->setData(clipboard->text());
+        newEntry->setTimestamp(QDateTime::currentDateTime());
+
+        clipboardEntryModel->addEntry(newEntry);
     };
 };
 

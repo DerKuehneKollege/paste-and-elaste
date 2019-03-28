@@ -12,6 +12,13 @@
 class ClipboardEntry : public QObject {
     Q_OBJECT
 public:
+    ClipboardEntry() = default;
+
+    ClipboardEntry(ClipboardEntry &source) {
+        this->data = source.data;
+        this->timestamp = source.timestamp;
+    }
+
     inline const QVariant &getData() const {
         return data;
     }
