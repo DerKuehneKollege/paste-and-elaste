@@ -28,6 +28,8 @@ To be researched.
 
 https://doc.qt.io/qt-5/windows-deployment.html
 
+https://books.google.de/books?id=RPlqDwAAQBAJ&pg=PA453&lpg=PA453&dq=makefile+windeployqt&source=bl&ots=cMiHqo2ZA4&sig=ACfU3U1HelJ7mAJZVmhcoA4uG8VzcUwUsA&hl=de&sa=X&ved=2ahUKEwjekcfe7aXhAhXECOwKHTBdD68Q6AEwBXoECAkQAQ#v=onepage&q=makefile%20windeployqt&f=false
+
 ## Useful links
 
 * https://doc.qt.io/qt-5/qtexamplesandtutorials.html
@@ -40,3 +42,9 @@ https://doc.qt.io/qt-5/windows-deployment.html
 * https://doc.qt.io/qt-5.11/qtsql-cachedtable-example.html
 
 * https://stackoverflow.com/questions/3492739/auto-expanding-layout-with-qt-designer
+
+# Credits
+
+Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) 
+from [www.flaticon.com](https://www.flaticon.com/) is licensed by 
+[CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).

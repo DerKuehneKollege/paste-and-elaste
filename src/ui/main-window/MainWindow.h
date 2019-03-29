@@ -1,16 +1,14 @@
 #ifndef PASTEANDELASTE_MAINWINDOW_H
 #define PASTEANDELASTE_MAINWINDOW_H
 
-
-
-
 #include <QDebug>
 #include <QClipboard>
 #include <QMainWindow>
 #include <QStringListModel>
 #include <QMessageBox>
+#include <QImage>
 
-#include "UiMainWindow.h"
+#include "ui_MainWindow.h"
 #include "src/consts.h"
 #include "src/model/ClipboardEntryModel.h"
 
@@ -37,9 +35,11 @@ public:
         ui.tableView->horizontalHeader()->setSectionResizeMode(Pae::COLUMN_TIMESTAMP, QHeaderView::Fixed);
         ui.tableView->setColumnWidth(Pae::COLUMN_TIMESTAMP, Pae::COLUMN_TIMESTAMP_WIDTH_PX);
 
+        setWindowIcon(QIcon(Pae::APP_ICON_FILENAME));
+
         QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(onSearchButtonClick()));
-        QObject::connect(ui.actionInfo, SIGNAL(triggered()), this, SLOT(onInfoActionTriggered()));
-        QObject::connect(ui.actionBeenden, SIGNAL(triggered()), this, SLOT(onCloseActionTriggered()));
+        QObject::connect(ui.actionAbout, SIGNAL(triggered()), this, SLOT(onInfoActionTriggered()));
+        QObject::connect(ui.actionExit, SIGNAL(triggered()), this, SLOT(onCloseActionTriggered()));
 
         QObject::connect(ui.tableView, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(onTableViewDoubleClicked(const QModelIndex&)));
 
@@ -58,7 +58,11 @@ private slots:
 
     void onInfoActionTriggered() {
         qDebug() << "Info action triggered.";
-        QMessageBox::about(this, "PasteAndElaste", "Ein Programm zur Verwaltung der Zwischenablage.\n(c) 2019 Martin Kühn");
+        QMessageBox::about(
+            this,
+            tr(Pae::APP_NAME),
+            tr("An application to manage clipboard content.\n(c) 2019 Martin Kühn\n\nIcons made by Smashicons (https://www.flaticon.com/authors/smashicons) from www.flaticon.com is licensed by CC 3.0 BY (http://creativecommons.org/licenses/by/3.0/).")
+        );
     };
 
     void onCloseActionTriggered() {

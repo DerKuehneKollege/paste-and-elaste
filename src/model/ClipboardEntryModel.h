@@ -5,8 +5,10 @@
 #ifndef PASTEANDELASTE_CLIPBOARDENTRYMODEL_H
 #define PASTEANDELASTE_CLIPBOARDENTRYMODEL_H
 
-
-static const int NUM_COLUMNS = 2;
+namespace Pae {
+    static const int NUM_COLUMNS = 2;
+    static const char *const TABLE_TIMESTAMP_FORMAT = "d.M.yyyy hh:mm:ss.z";
+}
 
 #include <QDebug>
 #include <QAbstractTableModel>
@@ -37,16 +39,16 @@ public:
     }
 
     int columnCount(const QModelIndex &parent) const override {
-        return NUM_COLUMNS;
+        return Pae::NUM_COLUMNS;
     }
 
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override {
         if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
             switch (section) {
                 case 0:
-                    return QString("Data");
+                    return tr("Data");
                 case 1:
-                    return QString("Timestamp");
+                    return tr("Timestamp");
                 default:
                     qWarning() << "ClipboardEntryModel::headerData: Num columns exceeded [" << section << "]";
             }
@@ -60,7 +62,7 @@ public:
             if (index.column() == 0) {
                 return mEntries.at(index.row())->getData();
             } else {
-                return mEntries.at(index.row())->getTimestamp().toString("d.M.yyyy hh:mm:ss.z");
+                return mEntries.at(index.row())->getTimestamp().toString(Pae::TABLE_TIMESTAMP_FORMAT);
             }
         }
 

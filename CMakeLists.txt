@@ -3,15 +3,14 @@ project(PasteAndElaste)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# Instruct CMake to run moc automatically when needed.
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOMOC ON) # Handle the Qt MOC (Meta object code) generation automatically
+set(CMAKE_AUTOUIC ON) # Handle the Qt UIC (Forms) code generation automatically
+set(CMAKE_AUTORCC ON) # Handle the Qt RCC (Resources) code generation automatically
 
-# Find includes in corresponding build directories
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_PREFIX_PATH "C:\\Dev\\Qt\\5.12.2\\mingw73_64\\lib\\cmake")
+set(CMAKE_INCLUDE_CURRENT_DIR ON) # Find includes in corresponding build directories
+set(CMAKE_PREFIX_PATH "C:\\Dev\\Qt\\5.12.2\\mingw73_64\\lib\\cmake") # To be modified pointing to Qt CMake libs dir
+set(CMAKE_BINARY_DIR build) # Put compiled code to the subfolder build
 
 # Find QT packages
 find_package(Qt5Core REQUIRED)
@@ -23,7 +22,7 @@ find_package(Qt5Sql REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
 # Tell CMake to create the executable
-set(SOURCE_FILES src/main.cpp src/ui/main-window/UiMainWindow.h src/ui/main-window/MainWindow.h src/ui/main-window/MainWindow.cpp src/model/ClipboardEntryModel.cpp src/model/ClipboardEntryModel.h src/model/ClipboardEntry.cpp src/model/ClipboardEntry.h src/consts.h)
+set(SOURCE_FILES src/main.cpp src/ui/main-window/ui_MainWindow.h src/ui/main-window/MainWindow.h src/ui/main-window/MainWindow.cpp src/model/ClipboardEntryModel.cpp src/model/ClipboardEntryModel.h src/model/ClipboardEntry.cpp src/model/ClipboardEntry.h src/consts.h)
 add_executable(PasteAndElaste ${SOURCE_FILES})
 
 # Link the executable to the Qt 5 libraries
