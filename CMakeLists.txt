@@ -19,11 +19,12 @@ find_package(Qt5Quick REQUIRED)
 find_package(Qt5Sql REQUIRED)
 
 # Add compiler flags for building executables (-fPIE)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
+#set(MWINDOWS -mwindows) # no console window is appearing
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS} ${MWINDOWS}")
 
 # Tell CMake to create the executable
 set(SOURCE_FILES src/main.cpp src/ui/main-window/ui_MainWindow.h src/ui/main-window/MainWindow.h src/ui/main-window/MainWindow.cpp src/model/ClipboardEntryModel.cpp src/model/ClipboardEntryModel.h src/model/ClipboardEntry.cpp src/model/ClipboardEntry.h src/consts.h)
-add_executable(PasteAndElaste ${SOURCE_FILES})
+add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 
 # Link the executable to the Qt 5 libraries
 target_link_libraries(${CMAKE_PROJECT_NAME} Qt5::Core)
